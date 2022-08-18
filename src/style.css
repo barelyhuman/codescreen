@@ -169,7 +169,7 @@ pre {
   font-family: var(--font-mono);
 }
 
-pre>code {
+pre > code {
   overflow-y: auto;
   line-height: 1.75;
   background: var(--gray-8);
@@ -193,7 +193,9 @@ pre>code {
   border-radius: 6px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
   background: var(--base);
-  height: 418px;
+  min-height: 418px;
+  padding-top: 25px;
+  padding-bottom: 25px;
   width: 800px;
   position: relative;
   display: flex;
