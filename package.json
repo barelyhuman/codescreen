@@ -23,6 +23,7 @@
   },
   "dependencies": {
     "@barelyhuman/mage": "https://pkg.csb.dev/barelyhuman/mage/commit/00ac7233/@barelyhuman/mage/_pkg.tgz",
+    "@barelyreaper/themer": "^1.0.0",
     "codejar": "^3.6.0",
     "highlight.js": "^11.6.0",
     "preact": "^10.1.0",

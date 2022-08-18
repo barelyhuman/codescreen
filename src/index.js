@@ -5,6 +5,11 @@ import { h, render } from "preact";
 import { createState, makeReactive } from "@barelyhuman/mage";
 import { CodeJar } from "codejar";
 import hljs from "highlight.js";
+import {
+  init,
+  getCurrentThemeSimplified,
+  toggleTheme,
+} from "@barelyreaper/themer";
 
 const defaultCode = `(defun fibonacci (n)
     (loop for a = 0 then b
@@ -34,9 +39,15 @@ const defaultTheme = "panda-syntax-light";
 const state = createState({
   value: "",
   theme: defaultTheme,
+  siteTheme: getInvertedTheme(),
 });
 
 let jar;
+let themeSub;
+
+function getInvertedTheme() {
+  return getCurrentThemeSimplified() == "light" ? "dark" : "light";
+}
 
 const injectUrl = (url) => {
   const _exist = document.head.getElementsByClassName("editor-theme");
@@ -61,17 +72,27 @@ const onThemeChange = (e) => {
   injectUrl(url);
 };
 
+function onSiteThemeChange() {
+  toggleTheme();
+  state.siteTheme = getInvertedTheme();
+}
+
 function _App() {
   return (
     <>
       <div class="screen-container">
         <h1 class="null">codescreen</h1>
         <p class="muted">simple code presentation for screenshots</p>
-        <select onChange={onThemeChange} value={state.theme}>
-          {sortedStyleKeys.map((opt) => {
-            return <option value={opt}>{opt}</option>;
-          })}
-        </select>
+        <div class="menu-container">
+          <select onChange={onThemeChange} value={state.theme}>
+            {sortedStyleKeys.map((opt) => {
+              return <option value={opt}>{opt}</option>;
+            })}
+          </select>
+          <button type="button" onClick={onSiteThemeChange}>
+            {state.siteTheme}
+          </button>
+        </div>
         <br />
         <div class="code-container">
           <div class="codejar-editor"></div>
@@ -84,6 +105,8 @@ function _App() {
 const App = makeReactive(state)(_App);
 
 App.onMount(() => {
+  themeSub = init();
+
   injectDefaultTheme();
 
   const elm = document.querySelector(".codejar-editor");
@@ -104,6 +127,10 @@ App.onMount(() => {
   setTimeout(() => {
     elm.focus();
   }, 10);
+});
+
+App.onDestroy(() => {
+  themeSub();
 });
 
 render(<App />, document.getElementById("app"));

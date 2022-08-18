@@ -1,6 +1,10 @@
 @import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&display=swap");
 
-:root {
+body {
+  --font-mono: "IBM Plex Mono", "Hermit", "Courier New", Courier, monospace;
+}
+
+body[data-dark-mode="light"] {
   --gray-9: #f1f3f5;
   --gray-8: #e9ecef;
   --gray-7: #dee2e6;
@@ -11,7 +15,21 @@
   --gray-2: #343a40;
   --gray-1: #212529;
   --gray-0: #000000;
-  --font-mono: "IBM Plex Mono", "Hermit", "Courier New", Courier, monospace;
+  --shadow: rgba(0, 0, 0, 0.12);
+}
+
+body[data-dark-mode="dark"] {
+  --gray-0: #f1f3f5;
+  --gray-1: #e9ecef;
+  --gray-2: #dee2e6;
+  --gray-3: #ced4da;
+  --gray-4: #adb5bd;
+  --gray-5: #868e96;
+  --gray-6: #495057;
+  --gray-7: #343a40;
+  --gray-8: #212529;
+  --gray-9: #000000;
+  --shadow: rgba(225, 225, 225, 0.12);
 }
 
 /* typography */
@@ -113,6 +131,7 @@ nav a:hover {
 select {
   background: var(--base);
   border: 1px solid var(--overlay);
+  color: var(--text);
   border-radius: 6px;
   padding: 10px;
   -webkit-appearance: none;
@@ -192,7 +211,7 @@ pre > code {
 
 .code-container {
   border-radius: 6px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 2px 8px var(--shadow);
   background: var(--base);
   min-height: 418px;
   padding-top: 25px;
@@ -215,4 +234,23 @@ pre > code {
 .null {
   margin: 0;
   padding: 0;
+}
+
+.menu-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+button[type="button"] {
+  background: var(--gray-8);
+  color: var(--text);
+  padding: 6px 16px;
+  border-radius: 6px;;
+  border: 0;
+}
+
+button[type="button"]:hover{
+  cursor: pointer;
+  background-color: var(--gray-7);
 }
