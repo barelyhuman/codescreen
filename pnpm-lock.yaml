@@ -1,7 +1,7 @@
 lockfileVersion: 5.3
 
 specifiers:
-  '@barelyhuman/mage': ^0.1.1
+  '@barelyhuman/mage': https://pkg.csb.dev/barelyhuman/mage/commit/00ac7233/@barelyhuman/mage/_pkg.tgz
   codejar: ^3.6.0
   eslint: ^7.17.0
   eslint-config-preact: ^1.1.3
@@ -13,7 +13,7 @@ specifiers:
   valtio: ^1.6.3
 
 dependencies:
-  '@barelyhuman/mage': 0.1.1_valtio@1.6.3
+  '@barelyhuman/mage': '@pkg.csb.dev/barelyhuman/mage/commit/00ac7233/@barelyhuman/mage/_pkg.tgz_preact@10.10.3+valtio@1.6.3'
   codejar: 3.6.0
   highlight.js: 11.6.0
   preact: 10.10.3
@@ -280,20 +280,6 @@ packages:
       '@babel/helper-validator-identifier': 7.18.6
       to-fast-properties: 2.0.0
     dev: true
-
-  /@barelyhuman/mage/0.1.1_valtio@1.6.3:
-    resolution: {integrity: sha512-8CYHuaNYWt/r70w2w6iQ37dnBX2CY3zNA9wPh2wBEiu/rqDsRHNXhvQUNFtibfL+eDLhalk39AdYUW/0MrXx5Q==}
-    engines: {pnpm: '6'}
-    peerDependencies:
-      '@react-navigation/native': ^6.0.0
-      react: ^18.0.0
-      valtio: ^1.6.3
-    peerDependenciesMeta:
-      '@react-navigation/native':
-        optional: true
-    dependencies:
-      valtio: 1.6.3
-    dev: false
 
   /@eslint/eslintrc/0.4.3:
     resolution: {integrity: sha512-J6KFFz5QCYUJq3pf0mjEcCJVERbzv71PUIDczuh9JkwGEzced6CO5ADLHB1rbf/+oPBtoPfMYNOpGDzCANlbXw==}
@@ -3420,3 +3406,26 @@ packages:
     resolution: {integrity: sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==}
     engines: {node: '>=10'}
     dev: true
+
+  '@pkg.csb.dev/barelyhuman/mage/commit/00ac7233/@barelyhuman/mage/_pkg.tgz_preact@10.10.3+valtio@1.6.3':
+    resolution: {tarball: https://pkg.csb.dev/barelyhuman/mage/commit/00ac7233/@barelyhuman/mage/_pkg.tgz}
+    id: '@pkg.csb.dev/barelyhuman/mage/commit/00ac7233/@barelyhuman/mage/_pkg.tgz'
+    name: '@barelyhuman/mage'
+    version: 0.1.1
+    engines: {pnpm: '6'}
+    peerDependencies:
+      '@react-navigation/native': ^6.0.0
+      preact: ^10.0.0
+      react: ^18.0.0
+      valtio: ^1.6.3
+    peerDependenciesMeta:
+      '@react-navigation/native':
+        optional: true
+      preact:
+        optional: true
+      react:
+        optional: true
+    dependencies:
+      preact: 10.10.3
+      valtio: 1.6.3
+    dev: false

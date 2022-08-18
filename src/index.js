@@ -1,26 +1,40 @@
 import "./style.css";
 
-import { render } from "preact";
+import { h, render } from "preact";
 
 import { createState, makeReactive } from "@barelyhuman/mage";
 import { CodeJar } from "codejar";
 import hljs from "highlight.js";
 
-const state = createState({
-  value: "",
-});
+const defaultCode = `(defun fibonacci (n)
+    (loop for a = 0 then b
+          and b = 1 then (+ a b)
+          repeat n finally (return a)))`;
 
 const baseStyleUrl = "https://unpkg.com/highlight.js@11.6.0/styles/";
-const defaultTheme = "default";
+
 const validStyles = {
-  default: "default.css",
   "base16/github": "base16/github.css",
   "mono-blue": "mono-blue.css",
   "base16/tomorrow": "base16/tomorrow.css",
   "color-brewer": "color-brewer.css",
   vs: "vs.css",
   "atom-one-light": "atom-one-light.css",
+  "arduino-light": "arduino-light.css",
+  ascetic: "ascetic.css",
+  "base16/atelier-lakeside-light": "base16/atelier-lakeside-light.css",
+  "base16/circus": "base16/circus.css",
+  "base16/grayscale-light": "base16/grayscale-light.css",
+  "panda-syntax-light": "panda-syntax-light.css",
 };
+
+const sortedStyleKeys = Object.keys(validStyles).sort();
+const defaultTheme = "panda-syntax-light";
+
+const state = createState({
+  value: "",
+  theme: defaultTheme,
+});
 
 let jar;
 
@@ -43,24 +57,27 @@ const onThemeChange = (e) => {
     return;
   }
   const url = baseStyleUrl + validStyles[e.target.value];
+  state.theme = e.target.value;
   injectUrl(url);
 };
 
 function _App() {
   return (
-    <div class="screen-container">
-      <h1 class="null">codescreen</h1>
-      <p class="muted">simple code presentation for screenshots</p>
-      <select onChange={onThemeChange}>
-        {Object.keys(validStyles).map((opt) => {
-          return <option value={opt}>{opt}</option>;
-        })}
-      </select>
-      <br />
-      <div class="code-container">
-        <div class="codejar-editor"></div>
+    <>
+      <div class="screen-container">
+        <h1 class="null">codescreen</h1>
+        <p class="muted">simple code presentation for screenshots</p>
+        <select onChange={onThemeChange} value={state.theme}>
+          {sortedStyleKeys.map((opt) => {
+            return <option value={opt}>{opt}</option>;
+          })}
+        </select>
+        <br />
+        <div class="code-container">
+          <div class="codejar-editor"></div>
+        </div>
       </div>
-    </div>
+    </>
   );
 }
 
@@ -82,9 +99,7 @@ App.onMount(() => {
     { tab: " ".repeat(2) }
   );
 
-  jar.updateCode(`function demo(){
-	console.log("demo code")
-}`);
+  jar.updateCode(defaultCode);
 
   setTimeout(() => {
     elm.focus();
