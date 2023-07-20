@@ -16,18 +16,18 @@
     "build/*"
   ],
   "devDependencies": {
-    "eslint": "^7.17.0",
-    "eslint-config-preact": "^1.1.3",
+    "eslint": "^7.32.0",
+    "eslint-config-preact": "^1.3.0",
     "parcel": "^2.7.0",
-    "sirv-cli": "^1.0.3"
+    "sirv-cli": "^1.0.14"
   },
   "dependencies": {
     "@barelyhuman/mage": "https://pkg.csb.dev/barelyhuman/mage/commit/00ac7233/@barelyhuman/mage/_pkg.tgz",
     "@barelyreaper/themer": "^1.0.0",
-    "codejar": "^3.6.0",
+    "codejar": "^3.7.0",
     "highlight.js": "^11.6.0",
-    "preact": "^10.1.0",
-    "preact-render-to-string": "^5.1.2",
+    "preact": "^10.10.3",
+    "preact-render-to-string": "^5.2.2",
     "valtio": "^1.6.3"
   },
   "alias": {
